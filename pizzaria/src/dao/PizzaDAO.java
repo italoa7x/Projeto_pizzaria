@@ -22,9 +22,14 @@ import model.Pizza;
  */
 public class PizzaDAO implements InterfacePizza {
 
+    private FacadePizza fPizza;
+
+    public PizzaDAO() {
+        fPizza = new FacadePizza();
+    }
+
     @Override
     public boolean salva(PizzaDTO obj) throws Exception {
-        FacadePizza fPizza = new FacadePizza();
         return fPizza.salvarPizza(obj);
     }
 
@@ -109,30 +114,7 @@ public class PizzaDAO implements InterfacePizza {
 
     @Override
     public int salvaPizzaPersonalizada(PizzaDTO obj) throws Exception {
-        /// area responsável por conectar ao banco e salvar os dados.
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        int id_pizza = 0;
-        try {
-            con = ConexaoDB.instancia().conectar();
-            pst = con.prepareStatement("insert into pizza (nome,tamanho,valor,quant_fatias, fatia) values (?,?,?,?,?)", PreparedStatement.RETURN_GENERATED_KEYS);
-            pst.setString(1, obj.getNome());
-            pst.setString(2, obj.getTamanho());
-            pst.setDouble(3, obj.getValor());
-            pst.setInt(4, obj.getQuant_fatias());
-            pst.setDouble(5, obj.getFatia());
-            pst.executeUpdate();
-            rs = pst.getGeneratedKeys();
-            while (rs.next()) {
-                id_pizza = rs.getInt("id");
-            }
-            setaSabores(id_pizza, obj.getSabores());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
-        return id_pizza;
+        return fPizza.salvaPizzaPersonalizada(obj);
     }
+    
 }

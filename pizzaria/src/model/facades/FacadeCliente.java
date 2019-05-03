@@ -1,40 +1,40 @@
 package model.facades;
 
-import dao.ClienteDAO;
-import dao.interfaces.InterfaceCliente;
+import dao.Adapter.AdapterCliente;
+import dao.Adapter.ServicePessoa;
 import dto.ClienteDTO;
 import model.strategy.InterfaceCrudPessoa;
 
 public class FacadeCliente implements InterfaceCrudPessoa{
-    private InterfaceCliente daoCli;
+    private ServicePessoa adpCli;
 
     public FacadeCliente() {
-        daoCli = new ClienteDAO();
+        adpCli = new AdapterCliente();
     }
     
     @Override
     public boolean salvar(Object obj) throws Exception {
-        return daoCli.salva((ClienteDTO) obj);
+        return adpCli.salvar(obj);
     }
 
     @Override
     public boolean excluir(int id) throws Exception {
-       return daoCli.deletar(id);
+       return adpCli.excluir(id);
     }
 
     @Override
     public Object listar() throws Exception {
-       return daoCli.listar();
+       return adpCli.exibir();
     }
 
     @Override
     public boolean atualizar(Object obj) throws Exception {
-       return daoCli.atualizar((ClienteDTO) obj);
+       return adpCli.atualizar((ClienteDTO) obj);
     }
 
     @Override
     public Object buscar(Object id) throws Exception {
-       return daoCli.buscar((String) id);
+       return adpCli.buscar_por_nome((String) id);
     }
 
     @Override

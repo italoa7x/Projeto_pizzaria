@@ -1,32 +1,33 @@
 package dao.Adapter;
 
+import dao.FuncionarioDAO;
 import dto.FuncionarioDTO;
 
-public class AdapterFuncionario extends PersistenceFuncionario implements ServicePessoa{
+public class AdapterFuncionario extends FuncionarioDAO implements ServicePessoa{
 
     @Override
     public boolean salvar(Object obj) throws Exception {
-        return super.salvar((FuncionarioDTO) obj);
+        return super.salva((FuncionarioDTO) obj);
     }
 
     @Override
     public Object exibir() throws Exception {
-        return super.listar_funcionarios();
+        return super.listar();
     }
 
     @Override
     public boolean excluir(int id) throws Exception {
-        return super.excluir_funcionario(id);
+        return super.deletar(id);
     }
 
     @Override
     public boolean atualizar(Object obj) throws Exception {
-        return super.atualizar_funcionario((FuncionarioDTO) obj);
+        return super.atualizar((FuncionarioDTO) obj);
     }
 
     @Override
     public Object acessar_sistema(String login, String senha) throws Exception {
-        return super.logar_sistema(login, senha);
+        return super.AcessarSistema(login, senha);
     }
 
     @Override

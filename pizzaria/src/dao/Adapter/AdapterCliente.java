@@ -1,26 +1,27 @@
 package dao.Adapter;
+import dao.ClienteDAO;
 import dto.ClienteDTO;
 
-public class AdapterCliente extends PersistenceCliente implements ServicePessoa{
+public class AdapterCliente extends ClienteDAO implements ServicePessoa{
 
     @Override
     public boolean salvar(Object obj) throws Exception{
-        return super.salvar_cliente((ClienteDTO) obj);
+        return super.salva((ClienteDTO) obj);
     }
 
     @Override
     public Object exibir() throws Exception {
-        return super.listar_clientes();
+        return super.listar();
     }
 
     @Override
     public boolean excluir(int id) throws Exception {
-        return super.excluir_cliente(id);
+        return super.deletar(id);
     }
 
     @Override
     public boolean atualizar(Object obj) throws Exception {
-        return super.atualizar_cliente((ClienteDTO) obj);
+        return super.atualizar((ClienteDTO) obj);
     }
 
     @Override
@@ -30,7 +31,7 @@ public class AdapterCliente extends PersistenceCliente implements ServicePessoa{
 
     @Override
     public Object buscar_por_nome(String nome) throws Exception {
-        return super.buscar_cliente_nome(nome);
+        return super.buscar(nome);
     }
     
 }

@@ -202,13 +202,9 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
         String telefone = campo_telefone.getText();
         
         ClienteControl clienteC = new ClienteControl();
-        ClienteDTO cliDTO = new ClienteDTO();
-        cliDTO.setNome(nome);
-        cliDTO.setCpf(cpf);
-        cliDTO.setEndereco(endereco);
-        cliDTO.setTelefone(telefone);
+
         try {
-            if (clienteC.salvaCliente(cliDTO)) {
+            if (clienteC.salvaCliente(nome, cpf, telefone, null, null, null, endereco, 0)) {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado.");
                 dispose();
             }

@@ -6,8 +6,14 @@ import dto.FuncionarioDTO;
 public class AdapterFuncionario extends FuncionarioDAO implements ServicePessoa{
 
     @Override
-    public boolean salvar(Object obj) throws Exception {
-        return super.salva((FuncionarioDTO) obj);
+    public boolean salvar(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception {
+        FuncionarioDTO fdto = new FuncionarioDTO();
+        fdto.setNome(nome);
+        fdto.setCargo(cargo);
+        fdto.setNivel_acesso(nivel_acesso);
+        fdto.setLogin(login);
+        fdto.setSenha(senha);
+        return super.salva(fdto);
     }
 
     @Override

@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import dto.FuncionarioDTO;
-import model.Funcionario;
+import model.facades.FacadeFuncionario;
+import model.strategy.InterfaceCrudPessoa;
 
 /**
  *
@@ -14,31 +10,31 @@ import model.Funcionario;
  */
 public class FuncionarioControl {
 
-    private Funcionario funcionario;
+    private InterfaceCrudPessoa facadeFun;
 
     public FuncionarioControl() {
-        funcionario = new Funcionario();
+        facadeFun = new FacadeFuncionario();
 
     }
 
     public boolean salvarFuncionario(FuncionarioDTO obj) throws Exception {
-        return funcionario.salvarFuncionario(obj);
+        return facadeFun.salvar(obj);
     }
     
     public boolean excluirFuncionario (int id) throws Exception{
-        return funcionario.excluirFuncionario(id);
+        return facadeFun.excluir(id);
     }
     
     public FuncionarioDTO listarFuncionario() throws Exception{
-        return funcionario.listarFuncionarios();
+        return (FuncionarioDTO) facadeFun.listar();
     }
     
     public boolean atualizarFuncionario(FuncionarioDTO obj) throws Exception{
-        return funcionario.atualizarFuncionario(obj);
+        return facadeFun.atualizar(obj);
     }
     
     public FuncionarioDTO logarSistema(String loginF, String senhaF) throws Exception {
-        return funcionario.logarSistema(loginF,senhaF);
+        return (FuncionarioDTO) facadeFun.logarSistema(loginF,senhaF);
     }
   
 }

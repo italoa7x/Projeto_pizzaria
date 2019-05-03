@@ -6,19 +6,20 @@
 package control;
 
 import model.Pizzaiolo;
+import model.facades.FacadePizzaiolo;
 
 /**
  *
  * @author Italo
  */
 public class PizzaioloControl {
-    private Pizzaiolo pizzaiolo;
+    private FacadePizzaiolo facadePizzaiolo;
     
     public PizzaioloControl(){
-        pizzaiolo = new Pizzaiolo();
+        facadePizzaiolo = new FacadePizzaiolo();
     }
     
     public boolean prepararPizza(int id) throws Exception{
-        return pizzaiolo.prepararPizza(id);
+        return facadePizzaiolo.prepararPizza(id);
     }
 }

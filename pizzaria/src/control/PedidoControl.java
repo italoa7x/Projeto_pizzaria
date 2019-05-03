@@ -6,7 +6,7 @@
 package control;
 
 import dto.PedidoDTO;
-import model.Pedido;
+import model.facades.FacadePedido;
 
 /**
  *
@@ -14,22 +14,22 @@ import model.Pedido;
  */
 public class PedidoControl {
     
-    private Pedido pedido;
+    private FacadePedido facadePedido;
     
     public PedidoControl(){
-        pedido = new Pedido();
+        facadePedido = new FacadePedido();
     }
     
     public boolean salvaPedido(int id_pizza, int id_cliente) throws Exception{
-        return pedido.salvarPedido(id_pizza, id_cliente);
+        return facadePedido.salvarPedido(id_pizza, id_cliente);
     }
     
     public PedidoDTO listarPedidos() throws Exception{
-        return pedido.listarPedidos();
+        return (PedidoDTO) facadePedido.listar();
     }
     
     public int quant_pedidosCli(int idCli) throws Exception{
-        return pedido.verificaQntPedidos(idCli);
+        return (int) facadePedido.verificarQuantPedidos(idCli);
     }
    
 }

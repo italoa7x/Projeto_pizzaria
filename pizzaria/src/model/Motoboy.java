@@ -5,23 +5,17 @@
  */
 package model;
 
-import dao.interfaces.InterfaceMotoboy;
-import dao.MotoboyDAO;
 
 /**
  *
  * @author Italo
  */
 public class Motoboy extends Funcionario{
-    private InterfaceMotoboy motoboyDAO;
+
     
     public Motoboy() {
         super(1);
-        motoboyDAO = new MotoboyDAO();
     }
-    
-    public boolean entregarPizza(int id, String status) throws Exception{
-       return motoboyDAO.entregarPizza(id, status);
-    }
+   
     
 }

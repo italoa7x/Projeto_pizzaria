@@ -7,7 +7,6 @@ package model;
 
 import dao.Adapter.AdapterFuncionario;
 import dao.Adapter.ServicePessoa;
-import dto.FuncionarioDTO;
 
 /**
  *
@@ -22,14 +21,6 @@ public class Funcionario {
     private String cargo;
     private int id;
     
-    // Criando uma instancia da interface ServicePessoa
-    private ServicePessoa service;
-    
-    public Funcionario(){
-        // Através de polimorfismo eu criei uma instância de adapter funcionario.
-        
-        service = new AdapterFuncionario();
-    }
 
     public Funcionario(int nivel) {
         this.nivel_acesso = nivel;
@@ -79,24 +70,4 @@ public class Funcionario {
         this.id = id;
     }
 
-    public boolean salvarFuncionario(FuncionarioDTO obj) throws Exception {
-        return service.salvar(obj);
-    }
-
-    public boolean atualizarFuncionario(FuncionarioDTO obj) throws Exception {
-        return service.atualizar(obj);
-
-    }
-
-    public FuncionarioDTO listarFuncionarios() throws Exception {
-        return (FuncionarioDTO) service.exibir();
-    }
-
-    public boolean excluirFuncionario(int id) throws Exception {
-        return service.excluir(id);
-    }
-
-    public FuncionarioDTO logarSistema(String loginF, String senhaF) throws Exception {
-       return (FuncionarioDTO) service.acessar_sistema(loginF, senhaF);
-    }
 }

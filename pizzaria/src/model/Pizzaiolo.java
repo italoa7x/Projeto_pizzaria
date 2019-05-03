@@ -5,22 +5,14 @@
  */
 package model;
 
-import dao.interfaces.InterfacePizzaiolo;
-import dao.PizzaioloDAO;
-
 /**
  *
  * @author Italo
  */
-public class Pizzaiolo extends Funcionario{
-    private InterfacePizzaiolo pizzaioloDAO;
-    
+public class Pizzaiolo extends Funcionario {
+
     public Pizzaiolo() {
         super(1);
-        pizzaioloDAO = new PizzaioloDAO();
     }
-    
-    public boolean prepararPizza(int id) throws Exception{
-        return pizzaioloDAO.prepararPizza(id);
-    }
+
 }

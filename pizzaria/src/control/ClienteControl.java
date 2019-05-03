@@ -1,35 +1,36 @@
 package control;
 
 import dto.ClienteDTO;
-import model.Cliente;
+import model.facades.FacadeCliente;
+import model.strategy.InterfaceCrudPessoa;
 
 /**
  *
  * @author Italo
  */
 public class ClienteControl {
-    private Cliente cliente;
+    private InterfaceCrudPessoa facadeCli;
     
     public ClienteControl(){
-        cliente = new Cliente();
+        facadeCli = new FacadeCliente();
     }
     public boolean salvaCliente(ClienteDTO obj) throws Exception {
-      return cliente.salvaCliente(obj);
+      return facadeCli.salvar(obj);
     }
     
     public boolean atualizarCliente(ClienteDTO obj)throws Exception{
-        return cliente.atualizarCliente(obj);
+        return facadeCli.atualizar(obj);
     }
     
     public boolean excluir(int id) throws Exception{
-        return cliente.excluirCliente(id);
+        return facadeCli.excluir(id);
     }
     
     public ClienteDTO buscar(String nome) throws Exception{
-        return cliente.buscar(nome);
+        return (ClienteDTO) facadeCli.buscar(nome);
     }
     
     public ClienteDTO listarClientes() throws Exception{
-        return cliente.listarCliente();
+        return (ClienteDTO) facadeCli.listar();
     }
 }

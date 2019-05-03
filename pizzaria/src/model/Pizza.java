@@ -5,11 +5,6 @@
  */
 package model;
 
-import dao.interfaces.InterfacePizza;
-import dao.*;
-import dto.PizzaDTO;
-import java.util.ArrayList;
-
 /**
  *
  * @author Italo
@@ -23,11 +18,6 @@ public class Pizza {
     private int id;
     private String nome;
     private int quant_fatias;
-    private InterfacePizza pizzaDao;
-
-    public Pizza() {
-        pizzaDao = new PizzaDAO();
-    }
 
     public int getQuant_fatias() {
         return quant_fatias;
@@ -83,27 +73,6 @@ public class Pizza {
 
     public void setSabores(String[] sabores) {
         this.sabores = sabores;
-    }
-
-    //////////////////////// AREA QUE SE COMUNICA COM O DAO //////////////////////
-    public boolean salvarPizza(PizzaDTO obj) throws Exception {
-        return pizzaDao.salva(obj);
-    }
-
-    public PizzaDTO listarPizza() throws Exception {
-        return pizzaDao.listar();
-    }
-
-    public ArrayList<String> verSabores(int id) throws Exception {
-        return pizzaDao.verSabores(id);
-    }
-
-    public boolean excluirPizza(int id) throws Exception {
-        return pizzaDao.deletar(id);
-    }
-
-    public int salvaPizzaPersonalizada(PizzaDTO obj) throws Exception {
-        return pizzaDao.salvaPizzaPersonalizada(obj);
     }
 
 }

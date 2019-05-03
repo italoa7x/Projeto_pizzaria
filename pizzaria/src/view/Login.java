@@ -114,11 +114,9 @@ public class Login extends javax.swing.JFrame {
                 if (fAchado != null) {
                     new Inicial(fAchado.getCargo()).setVisible(true);
                     dispose();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Funccionario não cadastrado.");
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Erro ao logar." + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Funcionário não cadastrado.");
             }
 
         }

@@ -2,7 +2,7 @@ package dao.Adapter;
 import dto.ClienteDTO;
 
 public class AdapterCliente extends PersistenceCliente implements ServicePessoa{
-    
+
     @Override
     public boolean salvar(Object obj) throws Exception{
         return super.salvar_cliente((ClienteDTO) obj);

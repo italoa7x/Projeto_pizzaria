@@ -1,36 +1,36 @@
 package control;
 
+import dao.Adapter.AdapterCliente;
+import dao.Adapter.ServicePessoa;
 import dto.ClienteDTO;
-import model.facades.FacadeCliente;
-import model.strategy.InterfaceCrudPessoa;
 
 /**
  *
  * @author Italo
  */
 public class ClienteControl {
-    private InterfaceCrudPessoa facadeCli;
+    private ServicePessoa adpCliente;
     
     public ClienteControl(){
-        facadeCli = new FacadeCliente();
+        adpCliente = new AdapterCliente();
     }
     public boolean salvaCliente(ClienteDTO obj) throws Exception {
-      return facadeCli.salvar(obj);
+      return adpCliente.salvar(obj);
     }
     
     public boolean atualizarCliente(ClienteDTO obj)throws Exception{
-        return facadeCli.atualizar(obj);
+        return adpCliente.atualizar(obj);
     }
     
     public boolean excluir(int id) throws Exception{
-        return facadeCli.excluir(id);
+        return adpCliente.excluir(id);
     }
     
     public ClienteDTO buscar(String nome) throws Exception{
-        return (ClienteDTO) facadeCli.buscar(nome);
+        return (ClienteDTO) adpCliente.buscar_por_nome(nome);
     }
     
     public ClienteDTO listarClientes() throws Exception{
-        return (ClienteDTO) facadeCli.listar();
+        return (ClienteDTO) adpCliente.exibir();
     }
 }

@@ -1,8 +1,8 @@
 package control;
 
+import dao.Adapter.AdapterFuncionario;
+import dao.Adapter.ServicePessoa;
 import dto.FuncionarioDTO;
-import model.facades.FacadeFuncionario;
-import model.strategy.InterfaceCrudPessoa;
 
 /**
  *
@@ -10,31 +10,31 @@ import model.strategy.InterfaceCrudPessoa;
  */
 public class FuncionarioControl {
 
-    private InterfaceCrudPessoa facadeFun;
+    private ServicePessoa adpFuncionario;
 
     public FuncionarioControl() {
-        facadeFun = new FacadeFuncionario();
+        adpFuncionario = new AdapterFuncionario();
 
     }
 
     public boolean salvarFuncionario(FuncionarioDTO obj) throws Exception {
-        return facadeFun.salvar(obj);
+        return adpFuncionario.salvar(obj);
     }
     
     public boolean excluirFuncionario (int id) throws Exception{
-        return facadeFun.excluir(id);
+        return adpFuncionario.excluir(id);
     }
     
     public FuncionarioDTO listarFuncionario() throws Exception{
-        return (FuncionarioDTO) facadeFun.listar();
+        return (FuncionarioDTO) adpFuncionario.exibir();
     }
     
     public boolean atualizarFuncionario(FuncionarioDTO obj) throws Exception{
-        return facadeFun.atualizar(obj);
+        return adpFuncionario.atualizar(obj);
     }
     
     public FuncionarioDTO logarSistema(String loginF, String senhaF) throws Exception {
-        return (FuncionarioDTO) facadeFun.logarSistema(loginF,senhaF);
+        return (FuncionarioDTO) adpFuncionario.acessar_sistema(loginF,senhaF);
     }
   
 }

@@ -20,13 +20,13 @@ public class Cliente {
     private String endereco;
     private String cpf;
     private int id;
-    
+
     /// instanciamento de uma interface ServicePessoa
     ServicePessoa service;
 
     public Cliente() {
         //através da interface pessoa, criei uma instancia de adapter cliente.
-        service = new AdapterCliente();
+        service = new dao.Adapter.AdapterCliente();
     }
 
     public String getNome() {
@@ -68,8 +68,6 @@ public class Cliente {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
-    
-    
 
     public boolean salvaCliente(ClienteDTO obj) throws Exception {
         return service.salvar(obj);

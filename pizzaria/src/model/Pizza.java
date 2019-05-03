@@ -24,10 +24,11 @@ public class Pizza {
     private String nome;
     private int quant_fatias;
     private InterfacePizza pizzaDao;
-    
-    public Pizza(){
+
+    public Pizza() {
         pizzaDao = new PizzaDAO();
     }
+
     public int getQuant_fatias() {
         return quant_fatias;
     }
@@ -83,13 +84,14 @@ public class Pizza {
     public void setSabores(String[] sabores) {
         this.sabores = sabores;
     }
+
     //////////////////////// AREA QUE SE COMUNICA COM O DAO //////////////////////
     public boolean salvarPizza(PizzaDTO obj) throws Exception {
         return pizzaDao.salva(obj);
     }
 
     public PizzaDTO listarPizza() throws Exception {
-       return pizzaDao.listar();
+        return pizzaDao.listar();
     }
 
     public ArrayList<String> verSabores(int id) throws Exception {
@@ -97,9 +99,11 @@ public class Pizza {
     }
 
     public boolean excluirPizza(int id) throws Exception {
-       return pizzaDao.deletar(id);
+        return pizzaDao.deletar(id);
     }
-    public int salvaPizzaPersonalizada(PizzaDTO obj)throws Exception{
+
+    public int salvaPizzaPersonalizada(PizzaDTO obj) throws Exception {
         return pizzaDao.salvaPizzaPersonalizada(obj);
     }
+
 }

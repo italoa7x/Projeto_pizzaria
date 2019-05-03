@@ -2,7 +2,7 @@ package dao.Adapter;
 
 import dto.FuncionarioDTO;
 
-public class AdapterFuncionario extends ServiceFuncionario implements ServicePessoa{
+public class AdapterFuncionario extends PersistenceFuncionario implements ServicePessoa{
 
     @Override
     public boolean salvar(Object obj) throws Exception {

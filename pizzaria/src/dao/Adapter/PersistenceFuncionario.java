@@ -3,10 +3,10 @@ package dao.Adapter;
 import dao.FuncionarioDAO;
 import dto.FuncionarioDTO;
 
-public class ServiceFuncionario {
+public class PersistenceFuncionario {
     private FuncionarioDAO daoF;
 
-    public ServiceFuncionario() {
+    public PersistenceFuncionario() {
         daoF = new FuncionarioDAO();
     }
 

@@ -3,10 +3,10 @@ package dao.Adapter;
 import dao.ClienteDAO;
 import dto.ClienteDTO;
 
-public class ServiceCliente {
+public class PersistenceCliente {
     private ClienteDAO daoC;
 
-    public ServiceCliente() {
+    public PersistenceCliente() {
         daoC = new ClienteDAO();
     }
     

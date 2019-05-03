@@ -24,7 +24,7 @@ public class PedidoDAO implements InterfacePedido {
     
 
     @Override
-    public boolean salva(int idCli, int idPizza) throws Exception {
+    public boolean salva(int idPizza, int idCli) throws Exception {
         Connection con = null;
         PreparedStatement pst = null;
         try {

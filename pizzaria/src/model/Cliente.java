@@ -1,14 +1,24 @@
 package model;
 
-public class Cliente {
+import dao.Adapter.AdapterCliente;
+import dao.Adapter.ServicePessoa;
+import model.strategy.InterfaceCrudPessoa;
+
+public class Cliente implements InterfaceCrudPessoa{
 
     private String nome;
     private String telefone;
     private String endereco;
     private String cpf;
     private int id;
+    
+    private ServicePessoa serviceC;
 
-
+    public Cliente() {
+        serviceC = new AdapterCliente();
+    }
+    
+    
     public String getNome() {
         return nome;
     }
@@ -47,6 +57,36 @@ public class Cliente {
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    @Override
+    public boolean salvar(Object obj) throws Exception {
+        return serviceC.salvar(obj);
+    }
+
+    @Override
+    public boolean excluir(int id) throws Exception {
+      return serviceC.excluir(id);
+    }
+
+    @Override
+    public Object listar() throws Exception {
+       return serviceC.exibir();
+    }
+
+    @Override
+    public boolean atualizar(Object obj) throws Exception {
+        return serviceC.atualizar(obj);
+    }
+
+    @Override
+    public Object buscar(Object id) throws Exception {
+      return serviceC.buscar_por_nome(nome);
+    }
+
+    @Override
+    public Object logarSistema(String l, String s) throws Exception {
+       return null;
     }
 
 }

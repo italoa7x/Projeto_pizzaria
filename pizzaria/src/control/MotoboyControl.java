@@ -6,20 +6,19 @@
 package control;
 
 import model.Motoboy;
-import model.facades.FacadeMotoboy;
 
 /**
  *
  * @author Italo
  */
 public class MotoboyControl {
-    private FacadeMotoboy facadeMotob;
+    private Motoboy motoboy;
     
     public MotoboyControl(){
-        facadeMotob = new FacadeMotoboy();
+        motoboy = new Motoboy();
     }
     
     public boolean entregarPizza(int id, String status) throws Exception{
-        return facadeMotob.entregarPedido(id, status);
+        return motoboy.entregarPedido(id, status);
     }
 }

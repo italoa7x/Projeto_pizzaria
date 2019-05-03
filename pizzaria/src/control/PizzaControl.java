@@ -7,7 +7,7 @@ package control;
 
 import dto.PizzaDTO;
 import java.util.ArrayList;
-import model.facades.FacadePizza;
+import model.Pizza;
 
 /**
  *
@@ -15,29 +15,29 @@ import model.facades.FacadePizza;
  */
 public class PizzaControl {
 
-    private FacadePizza facadePizza;
+    private Pizza pizza;
 
     public PizzaControl() {
-        facadePizza = new FacadePizza();
+        pizza = new Pizza();
     }
 
     public boolean salvaPizza(PizzaDTO obj) throws Exception {
-      return facadePizza.salvar(obj);
+      return pizza.salvar(obj);
     }
 
     public PizzaDTO listarPizza() throws Exception{
-        return (PizzaDTO) facadePizza.listar();
+        return (PizzaDTO) pizza.listar();
     }
 
     public ArrayList<String> verSabores(int id) throws Exception {
-        return (ArrayList<String>) facadePizza.verSabores(id);
+        return (ArrayList<String>) pizza.verSabores(id);
     }
     
     public boolean excluirPizza(int id) throws Exception{
-        return facadePizza.excluir(id);
+        return pizza.excluir(id);
     }
     
     public int salvaPizzaPersonalizada(PizzaDTO obj) throws Exception{
-      return facadePizza.salvarPersonalizada(obj);
+      return pizza.salvarPersonalizada(obj);
     }
 }

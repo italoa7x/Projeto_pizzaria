@@ -15,7 +15,7 @@ import java.sql.SQLException;
 public interface InterfacePedido {
     
       
-    public boolean salva(int idCli, int idPizza) throws Exception;
+    public boolean salva(int idPizza, int idCli) throws Exception;
     
     public PedidoDTO listar () throws Exception;
     

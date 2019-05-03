@@ -5,11 +5,16 @@
  */
 package model;
 
+import dao.PizzaDAO;
+import dao.interfaces.InterfacePizza;
+import dto.PizzaDTO;
+import model.strategy.InterfaceCrudPizza;
+
 /**
  *
  * @author Italo
  */
-public class Pizza {
+public class Pizza implements InterfaceCrudPizza {
 
     private String tamanho;
     private double valor;
@@ -18,6 +23,12 @@ public class Pizza {
     private int id;
     private String nome;
     private int quant_fatias;
+
+    private InterfacePizza interfacePi;
+
+    public Pizza() {
+        interfacePi = new PizzaDAO();
+    }
 
     public int getQuant_fatias() {
         return quant_fatias;
@@ -73,6 +84,31 @@ public class Pizza {
 
     public void setSabores(String[] sabores) {
         this.sabores = sabores;
+    }
+
+    @Override
+    public boolean salvar(Object obj) throws Exception {
+        return interfacePi.salva((PizzaDTO) obj);
+    }
+
+    @Override
+    public int salvarPersonalizada(Object obj) throws Exception {
+        return interfacePi.salvaPizzaPersonalizada((PizzaDTO) obj);
+    }
+
+    @Override
+    public Object listar() throws Exception {
+        return interfacePi.listar();
+    }
+
+    @Override
+    public Object verSabores(int id) throws Exception {
+        return interfacePi.verSabores(id);
+    }
+
+    @Override
+    public boolean excluir(int id) throws Exception {
+        return interfacePi.deletar(id);
     }
 
 }

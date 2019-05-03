@@ -11,7 +11,7 @@ package model.strategy;
  */
 public interface InterfaceCrudPedido {
     
-    public boolean salvarPedido(int idCli, int idPizza) throws Exception;
+    public boolean salvarPedido(int idPizza, int idCli) throws Exception;
     
     public Object listar() throws Exception;
     

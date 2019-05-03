@@ -357,9 +357,9 @@ public class Abrir_pedido extends javax.swing.JInternalFrame {
     private void btFinalizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btFinalizarActionPerformed
         // TODO add your handling code here:
         try {
-            int id_cli = Integer.parseInt((String) campo_idCli.getText());
-            int id_pi = Integer.parseInt((String) campo_idPizza.getText());
-            if (pedidoC.salvaPedido(id_pi, id_cli)) {
+            int id_cliente = Integer.parseInt((String) campo_idCli.getText());
+            int id_pizza = Integer.parseInt((String) campo_idPizza.getText());
+            if (pedidoC.salvaPedido(id_pizza, id_cliente)) {
                 JOptionPane.showMessageDialog(null, "Pedido feito");
                 dispose();
             }

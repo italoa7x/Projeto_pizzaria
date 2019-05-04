@@ -5,13 +5,8 @@ import dto.ClienteDTO;
 public class AdapterCliente extends ClienteDAO implements ServicePessoa{
 
     @Override
-    public boolean salvar(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception{
-        ClienteDTO clidto = new ClienteDTO();
-        clidto.setNome(nome);
-        clidto.setEndereco(endereco);
-        clidto.setCpf(cpf);
-        clidto.setTelefone(telefone);
-        return super.salva(clidto);
+    public boolean salvar(Object obj) throws Exception{
+        return super.salva((ClienteDTO) obj);
     }
 
     @Override

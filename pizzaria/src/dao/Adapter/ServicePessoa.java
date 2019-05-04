@@ -11,7 +11,7 @@ package dao.Adapter;
  */
 public interface ServicePessoa {
     
-    public  boolean salvar(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception;
+    public  boolean salvar(Object obj) throws Exception;
     
     public Object exibir() throws Exception;
     

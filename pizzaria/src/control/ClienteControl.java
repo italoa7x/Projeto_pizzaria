@@ -14,8 +14,8 @@ public class ClienteControl {
     public ClienteControl(){
         adpCliente = new AdapterCliente();
     }
-    public boolean salvaCliente(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception {
-      return adpCliente.salvar(nome, cpf, telefone, null, null, null, endereco, nivel_acesso);
+    public boolean salvaCliente(ClienteDTO obj) throws Exception {
+      return adpCliente.salvar(obj);
     }
     
     public boolean atualizarCliente(ClienteDTO obj)throws Exception{

@@ -212,10 +212,18 @@ public class Cadastro_funcionario extends javax.swing.JInternalFrame {
             int nivel_acesso = Integer.parseInt((String) txtNivelAcesso.getText());
             String cargo = combo_cargos.getSelectedItem().toString();
             
+            FuncionarioDTO fDto = new FuncionarioDTO();
+            
+            fDto.setNome(nome);
+            fDto.setLogin(login);
+            fDto.setSenha(senha);
+            fDto.setNivel_acesso(nivel_acesso);
+            fDto.setCargo(cargo);
+            
            
             if (nome.length() > 0 && login.length() > 0 && senha.length() > 0 && cargo.length() > 0) {
                 // ÁREA QUE RECEBE O OBJETO FUNCIONARIO-DTO E ENVIA PARA O CONTROLER.
-                if (funcionarioControl.salvarFuncionario(nome, null, null, login, senha, cargo, null, nivel_acesso)) {
+                if (funcionarioControl.salvarFuncionario(fDto)) {
                     JOptionPane.showMessageDialog(null, "Funcionário cadastrado.");
                     campo_login.setText("");
                     campo_nome.setText("");
@@ -227,7 +235,7 @@ public class Cadastro_funcionario extends javax.swing.JInternalFrame {
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar funcionário, " + e.getMessage());
         }
     }//GEN-LAST:event_btSalvarActionPerformed
 

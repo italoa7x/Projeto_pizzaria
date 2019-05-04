@@ -60,8 +60,8 @@ public class Cliente implements InterfaceCrudPessoa{
     }
 
     @Override
-    public boolean salvar(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception {
-        return serviceC.salvar(nome, cpf, telefone, null, null, null, endereco, 0);
+    public boolean salvar(Object obj) throws Exception {
+        return serviceC.salvar(obj);
     }
 
     @Override

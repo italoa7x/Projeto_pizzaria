@@ -17,8 +17,8 @@ public class FuncionarioControl {
 
     }
 
-    public boolean salvarFuncionario(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception {
-        return adpFuncionario.salvar(nome, null, null, login, senha, cargo, null, nivel_acesso);
+    public boolean salvarFuncionario(FuncionarioDTO obj) throws Exception {
+        return adpFuncionario.salvar(obj);
     }
     
     public boolean excluirFuncionario (int id) throws Exception{

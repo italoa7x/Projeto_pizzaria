@@ -77,8 +77,8 @@ public class Funcionario implements InterfaceCrudPessoa {
     }
 
     @Override
-    public boolean salvar(String nome, String cpf, String telefone, String login, String senha, String cargo, String endereco, int nivel_acesso) throws Exception {
-        return serviceF.salvar(nome, cpf, telefone, login, senha, cargo, endereco, nivel_acesso);
+    public boolean salvar(Object obj) throws Exception {
+        return serviceF.salvar(obj);
     }
 
     @Override

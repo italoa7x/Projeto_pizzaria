@@ -202,14 +202,20 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
         String telefone = campo_telefone.getText();
         
         ClienteControl clienteC = new ClienteControl();
-
+        ClienteDTO cliDto = new ClienteDTO();
+        
+        cliDto.setNome(nome);
+        cliDto.setCpf(cpf);
+        cliDto.setEndereco(endereco);
+        cliDto.setTelefone(telefone);
+        
         try {
-            if (clienteC.salvaCliente(nome, cpf, telefone, null, null, null, endereco, 0)) {
+            if (clienteC.salvaCliente(cliDto)) {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado.");
                 dispose();
             }
         } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, ex.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao cadastrar cliente, " + ex.getMessage());
         }
 
     }//GEN-LAST:event_btSalvarActionPerformed

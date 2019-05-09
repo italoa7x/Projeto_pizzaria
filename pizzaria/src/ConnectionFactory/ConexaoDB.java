@@ -8,10 +8,10 @@ import java.sql.*;
  */
 public class ConexaoDB {
 
-    private final String USUARIO = "root";
-    private final String SENHA = "root";
-    private final String URL = "jdbc:mysql://localhost:3306/pp";
-    private final String DRIVE = "com.mysql.jdbc.Driver";
+    private final String USUARIO = "postgres";
+    private final String SENHA = "123";
+    private final String URL = "jdbc:postgresql://localhost:5433/bd";
+    private final String DRIVE = "org.postgresql.Driver";
 
     public Connection conectar() {
         try {

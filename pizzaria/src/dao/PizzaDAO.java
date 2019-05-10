@@ -22,11 +22,12 @@ import javax.swing.JOptionPane;
 public class PizzaDAO implements InterfacePizza {
 
     @Override
-    public boolean salva(PizzaDTO obj) throws Exception {
+    public int salva(PizzaDTO obj) throws Exception {
         /// area responsável por conectar ao banco e salvar os dados.
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
+        int id_gerado = 0;
         try {
             con = ConexaoDB.instancia().conectar();
             pst = con.prepareStatement("insert into pizza (nome,tamanho,valor,quant_fatias, fatia) values (?,?,?,?,?)",
@@ -39,17 +40,15 @@ public class PizzaDAO implements InterfacePizza {
             pst.execute();
             rs = pst.getGeneratedKeys();
             while (rs.next()) {
-                int idPi = rs.getInt("id");
-                setaSabores(idPi, obj.getSabores());
-                return true;
+                id_gerado = rs.getInt("id");
             }
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
+            JOptionPane.showMessageDialog(null, "Erro ao salvar pizza " + e.getMessage());
         } finally {
             ConexaoDB.instancia().desconectar(con, pst, rs);
         }
-        return false;
+        return id_gerado;
     }
 
     @Override
@@ -100,16 +99,6 @@ public class PizzaDAO implements InterfacePizza {
     }
 
     @Override
-    public boolean atualizar(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public Object buscar(Object obj) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
     public ArrayList<String> verSabores(int id) throws Exception {
         Connection con = null;
         PreparedStatement pst = null;
@@ -132,36 +121,7 @@ public class PizzaDAO implements InterfacePizza {
     }
 
     @Override
-    public int salvaPizzaPersonalizada(PizzaDTO obj) throws Exception {
-        /// area responsável por conectar ao banco e salvar os dados.
-        Connection con = null;
-        PreparedStatement pst = null;
-        ResultSet rs = null;
-        int id_pizza = 0;
-        try {
-            con = ConexaoDB.instancia().conectar();
-            pst = con.prepareStatement("insert into pizza (nome,tamanho,valor,quant_fatias, fatia) values (?,?,?,?,?)",
-                    PreparedStatement.RETURN_GENERATED_KEYS);
-            pst.setString(1, obj.getNome());
-            pst.setString(2, obj.getTamanho());
-            pst.setDouble(3, obj.getValor());
-            pst.setInt(4, obj.getQuant_fatias());
-            pst.setDouble(5, obj.getFatia());
-            pst.executeUpdate();
-            rs = pst.getGeneratedKeys();
-            while (rs.next()) {
-                id_pizza = rs.getInt("id");
-            }
-            setaSabores(id_pizza, obj.getSabores());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
-        return id_pizza;
-    }
-
-    private void setaSabores(int id, String[] sabores) throws Exception {
+    public boolean salva_ingredientes(int id, String[] sabores) throws Exception {
         /// area responsável por conectar ao banco e salvar os dados.
         Connection con = null;
         PreparedStatement pst = null;
@@ -173,9 +133,9 @@ public class PizzaDAO implements InterfacePizza {
                 pst.setString(2, sabores[i]);
                 pst.execute();
             }
-
+            return true;
         } catch (SQLException ex) {
-            throw new Exception(ex.getMessage());
+            throw new Exception("Erro ao salvar pizza " + ex.getMessage());
         } finally {
             ConexaoDB.instancia().desconectar(con, pst);
         }

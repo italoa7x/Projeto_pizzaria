@@ -10,7 +10,7 @@ public class ConexaoDB {
 
     private final String USUARIO = "postgres";
     private final String SENHA = "123";
-    private final String URL = "jdbc:postgresql://localhost:5433/bd";
+    private final String URL = "jdbc:postgresql://localhost:5432/bd";
     private final String DRIVE = "org.postgresql.Driver";
 
     public Connection conectar() {

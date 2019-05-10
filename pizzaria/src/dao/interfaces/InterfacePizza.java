@@ -15,18 +15,13 @@ import java.util.ArrayList;
 public interface InterfacePizza {
     
       
-    public boolean salva(PizzaDTO obj) throws Exception;
-    
-    public int salvaPizzaPersonalizada(PizzaDTO obj) throws Exception;
+    public int salva(PizzaDTO obj) throws Exception;
     
     public boolean deletar(int id) throws Exception;
     
     public PizzaDTO listar () throws Exception;
     
-    public boolean atualizar (Object obj) throws Exception;
-    
-    public Object buscar(Object obj) throws Exception;
-    
     public ArrayList<String> verSabores(int id) throws Exception;
     
+    public boolean salva_ingredientes(int id, String[] sabores) throws Exception;
 }

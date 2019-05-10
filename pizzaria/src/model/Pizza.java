@@ -6,6 +6,7 @@
 package model;
 
 import dao.PizzaDAO;
+import dao.Template.TemplatePizza;
 import dao.interfaces.InterfacePizza;
 import dto.PizzaDTO;
 import model.strategy.InterfaceCrudPizza;
@@ -25,9 +26,11 @@ public class Pizza implements InterfaceCrudPizza {
     private int quant_fatias;
 
     private InterfacePizza interfacePi;
-
+    private TemplatePizza tmpPizza;
+    
     public Pizza() {
         interfacePi = new PizzaDAO();
+        tmpPizza = new TemplatePizza();
     }
 
     public int getQuant_fatias() {
@@ -88,12 +91,12 @@ public class Pizza implements InterfaceCrudPizza {
 
     @Override
     public boolean salvar(Object obj) throws Exception {
-        return interfacePi.salva((PizzaDTO) obj);
+        return tmpPizza.persistir_pizza((PizzaDTO) obj);
     }
 
     @Override
     public int salvarPersonalizada(Object obj) throws Exception {
-        return interfacePi.salvaPizzaPersonalizada((PizzaDTO) obj);
+        return tmpPizza.persistir_pizza_personalizada((PizzaDTO) obj);
     }
 
     @Override

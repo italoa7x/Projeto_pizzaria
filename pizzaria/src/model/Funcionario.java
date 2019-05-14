@@ -7,13 +7,12 @@ package model;
 
 import dao.Adapter.AdapterFuncionario;
 import dao.Adapter.ServicePessoa;
-import model.strategy.InterfaceCrudPessoa;
 
 /**
  *
  * @author Italo
  */
-public class Funcionario implements InterfaceCrudPessoa {
+public class Funcionario{
 
     private String nome;
     private String login;
@@ -76,32 +75,23 @@ public class Funcionario implements InterfaceCrudPessoa {
         this.id = id;
     }
 
-    @Override
     public boolean salvar(Object obj) throws Exception {
         return serviceF.salvar(obj);
     }
 
-    @Override
     public boolean excluir(int id) throws Exception {
         return serviceF.excluir(id);
     }
 
-    @Override
     public Object listar() throws Exception {
         return serviceF.exibir();
     }
 
-    @Override
     public boolean atualizar(Object obj) throws Exception {
         return serviceF.atualizar(obj);
     }
 
-    @Override
-    public Object buscar(Object id) throws Exception {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
     public Object logarSistema(String l, String s) throws Exception {
         return serviceF.acessar_sistema(l, s);
     }

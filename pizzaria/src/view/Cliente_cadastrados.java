@@ -8,6 +8,7 @@ package view;
 import control.ClienteControl;
 import dto.ClienteDTO;
 import java.awt.Dimension;
+import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -290,8 +291,7 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
             cliDTO.setEndereco(endereco);
             cliDTO.setTelefone(telefone);
             cliDTO.setId(id);
-            
-            
+
             if (clienteControl.atualizarCliente(cliDTO)) {
                 JOptionPane.showMessageDialog(null, "Dados atualizados.");
                 limpaCampos();

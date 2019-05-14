@@ -2,9 +2,9 @@ package model;
 
 import dao.PedidoDAO;
 import dao.interfaces.InterfacePedido;
-import model.strategy.InterfaceCrudPedido;
+import model.strategy.StrategyPedido;
 
-public class Pedido implements InterfaceCrudPedido{
+public class Pedido implements StrategyPedido{
 
     private String status;
     private Pizza pizza;
@@ -13,7 +13,7 @@ public class Pedido implements InterfaceCrudPedido{
   
     private InterfacePedido interfaceP;
 
-    public Pedido() {
+    public Pedido(){
         interfaceP = new PedidoDAO();
     }
     
@@ -49,19 +49,44 @@ public class Pedido implements InterfaceCrudPedido{
         this.cliente = cliente;
     }
 
+//    public boolean salvarPedido(int idPizza, int idCli) throws Exception {
+//       return interfaceP.salva(idPizza, idCli);
+//    }
+//
+//    public Object listar() throws Exception {
+//        return interfaceP.listar();
+//    }
+//
+//    public Object verificarQuantPedidos(int idCli) throws Exception {
+//        return interfaceP.verificaQuantPedidos(idCli);
+//    }
+
     @Override
-    public boolean salvarPedido(int idPizza, int idCli) throws Exception {
-       return interfaceP.salva(idPizza, idCli);
+    public boolean salvar_pedido(int id_pizza, int id_cliente) throws Exception {
+        return interfaceP.salva(id_pizza, id_cliente);
     }
 
     @Override
-    public Object listar() throws Exception {
+    public Object listar_pedido() throws Exception {
         return interfaceP.listar();
     }
 
+
     @Override
-    public Object verificarQuantPedidos(int idCli) throws Exception {
-        return interfaceP.verificaQuantPedidos(idCli);
+    public Object verificaQuantPedidos(int id_cliente) throws Exception {
+        return interfaceP.verificaQuantPedidos(id_cliente);
     }
+
+    @Override
+    public boolean preparar_pedido(int id_pedido) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public boolean entregar_pedido(String status, int id_pedido) throws Exception {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 
 }

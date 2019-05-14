@@ -2,9 +2,8 @@ package model;
 
 import dao.Adapter.AdapterCliente;
 import dao.Adapter.ServicePessoa;
-import model.strategy.InterfaceCrudPessoa;
 
-public class Cliente implements InterfaceCrudPessoa{
+public class Cliente{
 
     private String nome;
     private String telefone;
@@ -59,34 +58,24 @@ public class Cliente implements InterfaceCrudPessoa{
         this.cpf = cpf;
     }
 
-    @Override
     public boolean salvar(Object obj) throws Exception {
         return serviceC.salvar(obj);
     }
 
-    @Override
     public boolean excluir(int id) throws Exception {
       return serviceC.excluir(id);
     }
 
-    @Override
     public Object listar() throws Exception {
        return serviceC.exibir();
     }
 
-    @Override
     public boolean atualizar(Object obj) throws Exception {
         return serviceC.atualizar(obj);
     }
 
-    @Override
     public Object buscar(Object id) throws Exception {
       return serviceC.buscar_por_nome(nome);
-    }
-
-    @Override
-    public Object logarSistema(String l, String s) throws Exception {
-       return null;
     }
 
 }

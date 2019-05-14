@@ -9,13 +9,12 @@ import dao.PizzaDAO;
 import dao.Template.TemplatePizza;
 import dao.interfaces.InterfacePizza;
 import dto.PizzaDTO;
-import model.strategy.InterfaceCrudPizza;
 
 /**
  *
  * @author Italo
  */
-public class Pizza implements InterfaceCrudPizza {
+public class Pizza{
 
     private String tamanho;
     private double valor;
@@ -89,27 +88,22 @@ public class Pizza implements InterfaceCrudPizza {
         this.sabores = sabores;
     }
 
-    @Override
     public boolean salvar(Object obj) throws Exception {
         return tmpPizza.persistir_pizza((PizzaDTO) obj);
     }
 
-    @Override
     public int salvarPersonalizada(Object obj) throws Exception {
         return tmpPizza.persistir_pizza_personalizada((PizzaDTO) obj);
     }
 
-    @Override
     public Object listar() throws Exception {
         return interfacePi.listar();
     }
 
-    @Override
     public Object verSabores(int id) throws Exception {
         return interfacePi.verSabores(id);
     }
 
-    @Override
     public boolean excluir(int id) throws Exception {
         return interfacePi.deletar(id);
     }

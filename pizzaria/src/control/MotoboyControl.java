@@ -6,19 +6,20 @@
 package control;
 
 import model.Motoboy;
+import model.strategy.StrategyPedido;
 
 /**
  *
  * @author Italo
  */
 public class MotoboyControl {
-    private Motoboy motoboy;
+    private StrategyPedido motoboy;
     
     public MotoboyControl(){
         motoboy = new Motoboy();
     }
     
     public boolean entregarPizza(int id, String status) throws Exception{
-        return motoboy.entregarPedido(id, status);
+        return motoboy.entregar_pedido(status, id);
     }
 }

@@ -7,6 +7,7 @@ package control;
 
 import dto.PedidoDTO;
 import model.Pedido;
+import model.strategy.StrategyPedido;
 
 /**
  *
@@ -14,22 +15,22 @@ import model.Pedido;
  */
 public class PedidoControl {
     
-    private Pedido pedido;
+    private StrategyPedido pedido;
     
     public PedidoControl(){
         pedido = new Pedido();
     }
     
     public boolean salvaPedido(int id_pizza, int id_cliente) throws Exception{
-        return pedido.salvarPedido(id_pizza, id_cliente);
+        return pedido.salvar_pedido(id_pizza, id_cliente);
     }
     
     public PedidoDTO listarPedidos() throws Exception{
-        return (PedidoDTO) pedido.listar();
+        return (PedidoDTO) pedido.listar_pedido();
     }
     
     public int quant_pedidosCli(int idCli) throws Exception{
-        return (int) pedido.verificarQuantPedidos(idCli);
+        return (int) pedido.verificaQuantPedidos(idCli);
     }
    
 }

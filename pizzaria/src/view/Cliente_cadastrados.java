@@ -8,9 +8,9 @@ package view;
 import control.ClienteControl;
 import dto.ClienteDTO;
 import java.awt.Dimension;
-import java.util.Iterator;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.iterator.IteratorClienteDTO;
 
 /**
  *
@@ -22,11 +22,12 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
      * Creates new form Cliente_cadastrados
      */
     private ClienteControl clienteControl;
+    private IteratorClienteDTO iteratorCli;
 
     public Cliente_cadastrados() {
         initComponents();
         clienteControl = new ClienteControl();
-        preencheTabela();
+        popularTabela();
     }
 
     public void setPosicao() {
@@ -34,38 +35,49 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
     }
 
-    private void preencheTabela() {
+    private void popularTabela() {
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
         try {
             ClienteDTO cliDTO = clienteControl.listarClientes();
-            for (ClienteDTO x : cliDTO.getClientesCadastrados()) {
+
+            iteratorCli = new IteratorClienteDTO(cliDTO.getClientesCadastrados());
+
+            while (iteratorCli.hasnext()) {
+                ClienteDTO obj = iteratorCli.next();
                 String[] dados = new String[5];
-                dados[0] = x.getNome();
-                dados[1] = x.getCpf();
-                dados[2] = x.getTelefone();
-                dados[3] = x.getEndereco();
-                dados[4] = x.getId() + "";
+                dados[0] = obj.getNome();
+                dados[1] = obj.getCpf();
+                dados[2] = obj.getTelefone();
+                dados[3] = obj.getEndereco();
+                dados[4] = obj.getId() + "";
                 model.addRow(dados);
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
 
+
     private void atualizarTabela() {
-        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        model.setNumRows(0);
+       DefaultTableModel model = (DefaultTableModel) tabela.getModel();
+       model.setNumRows(0);
         try {
             ClienteDTO cliDTO = clienteControl.listarClientes();
-            for (ClienteDTO x : cliDTO.getClientesCadastrados()) {
+
+            iteratorCli = new IteratorClienteDTO(cliDTO.getClientesCadastrados());
+
+            while (iteratorCli.hasnext()) {
+                ClienteDTO obj = iteratorCli.next();
                 String[] dados = new String[5];
-                dados[0] = x.getNome();
-                dados[1] = x.getCpf();
-                dados[2] = x.getTelefone();
-                dados[3] = x.getEndereco();
-                dados[4] = x.getId() + "";
+                dados[0] = obj.getNome();
+                dados[1] = obj.getCpf();
+                dados[2] = obj.getTelefone();
+                dados[3] = obj.getEndereco();
+                dados[4] = obj.getId() + "";
                 model.addRow(dados);
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

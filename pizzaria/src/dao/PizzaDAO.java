@@ -40,7 +40,7 @@ public class PizzaDAO implements InterfacePizza {
             pst.execute();
             rs = pst.getGeneratedKeys();
             while (rs.next()) {
-                id_gerado = rs.getInt("id");
+                id_gerado = rs.getInt(1);
             }
 
         } catch (Exception e) {

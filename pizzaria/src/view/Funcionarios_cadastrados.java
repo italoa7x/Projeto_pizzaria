@@ -10,7 +10,7 @@ import dto.FuncionarioDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import model.Funcionario;
+import view.iterator.IteratorFuncionarioDTO;
 
 /**
  *
@@ -22,14 +22,15 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
      * Creates new form Funcionarios_cadastrados
      */
     private FuncionarioControl funcionarioControl;
-
+    private IteratorFuncionarioDTO iteratorF;
+    
     public Funcionarios_cadastrados() {
         initComponents();
         funcionarioControl = new FuncionarioControl();
-
+        
         preencherTabela();
     }
-
+    
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();
         this.setLocation((d.width - this.getSize().width) / 2, (d.height - this.getSize().height) / 2);
@@ -194,35 +195,43 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
         try {
             FuncionarioDTO fDTO = funcionarioControl.listarFuncionario();
-            for (FuncionarioDTO x : fDTO.getFuncionarioCadastrados()) {
+            
+            iteratorF = new IteratorFuncionarioDTO(fDTO.getFuncionarioCadastrados());
+            while (iteratorF.hasnext()) {
+                FuncionarioDTO obj = iteratorF.next();
                 String[] dados = new String[5];
-                dados[0] = x.getNome();
-                dados[1] = x.getLogin();
-                dados[2] = x.getSenha();
-                dados[3] = x.getCargo();
-                dados[4] = x.getId() + "";
+                dados[0] = obj.getNome();
+                dados[1] = obj.getLogin();
+                dados[2] = obj.getSenha();
+                dados[3] = obj.getCargo();
+                dados[4] = obj.getId() + "";
                 model.addRow(dados);
             }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
-
+        
     }
-
+    
     private void atualizarTabela() {
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
         model.setNumRows(0);
         try {
             FuncionarioDTO fDTO = funcionarioControl.listarFuncionario();
-            for (FuncionarioDTO x : fDTO.getFuncionarioCadastrados()) {
+            
+            iteratorF = new IteratorFuncionarioDTO(fDTO.getFuncionarioCadastrados());
+            while (iteratorF.hasnext()) {
+                FuncionarioDTO obj = iteratorF.next();
                 String[] dados = new String[5];
-                dados[0] = x.getNome();
-                dados[1] = x.getLogin();
-                dados[2] = x.getSenha();
-                dados[3] = x.getCargo();
-                dados[4] = x.getId() + "";
+                dados[0] = obj.getNome();
+                dados[1] = obj.getLogin();
+                dados[2] = obj.getSenha();
+                dados[3] = obj.getCargo();
+                dados[4] = obj.getId() + "";
                 model.addRow(dados);
             }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -235,7 +244,7 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
         String senha = (String) tabela.getValueAt(linha, 2);
         String cargo = (String) tabela.getValueAt(linha, 3);
         String id = String.valueOf(tabela.getValueAt(linha, 4));
-
+        
         campo_nome.setText(nome);
         campo_login.setText(login);
         campo_senha.setText(senha);
@@ -266,7 +275,7 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
                 desabilitaCampos();
                 atualizarTabela();
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -289,7 +298,7 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
         }
 
     }//GEN-LAST:event_btExcluirActionPerformed
-
+    
     private void limpaCampos() {
         // limpa os campos
         campo_id.setText("");
@@ -297,14 +306,14 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
         campo_login.setText("");
         campo_senha.setText("");
     }
-
+    
     private void habilitaCampos() {
         campo_nome.setEditable(true);
         campo_senha.setEditable(true);
         campo_login.setEditable(true);
         btSalvar.setEnabled(true);
     }
-
+    
     private void desabilitaCampos() {
         campo_nome.setEditable(false);
         campo_senha.setEditable(false);

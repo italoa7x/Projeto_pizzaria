@@ -11,6 +11,8 @@ import dto.PedidoDTO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
+import view.iterator.IteratorPe;
+import view.iterator.IteratorPedidoDTO;
 
 /**
  *
@@ -23,32 +25,37 @@ public class Tela_pizzaiolo extends javax.swing.JFrame {
      */
     private PedidoControl pedidoControl;
     private PizzaioloControl pizzaioloControl;
-    
+    private IteratorPe iteratorP;
+
     public Tela_pizzaiolo(String cargo) {
         initComponents();
         pedidoControl = new PedidoControl();
         pizzaioloControl = new PizzaioloControl();
         preencherTabela();
-        
-        if(cargo.equalsIgnoreCase("atendente")){
+
+        if (cargo.equalsIgnoreCase("atendente")) {
             btFazerPizza.setEnabled(false);
         }
-        
+
     }
 
     private void preencherTabela() {
         DefaultTableModel model = (DefaultTableModel) tabela.getModel();
         try {
             PedidoDTO pedidosDTO = pedidoControl.listarPedidos();
-            for (PedidoDTO x : pedidosDTO.getPedidosCadastrados()) {
+            iteratorP = new IteratorPedidoDTO(pedidosDTO.getPedidosCadastrados());
+
+            while (iteratorP.hasNext()) {
+                PedidoDTO obj = iteratorP.next();
                 String[] dados = new String[5];
-                dados[0] = x.getPizza().getNome();
-                dados[1] = x.getPizza().getTamanho();
-                dados[2] = x.getPizza().getValor() + "";
-                dados[3] = x.getId() + "";
-                dados[4] = x.getStatus();
+                dados[0] = obj.getPizza().getNome();
+                dados[1] = obj.getPizza().getTamanho();
+                dados[2] = obj.getPizza().getValor() + "";
+                dados[3] = obj.getId() + "";
+                dados[4] = obj.getStatus();
                 model.addRow(dados);
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -60,20 +67,25 @@ public class Tela_pizzaiolo extends javax.swing.JFrame {
         model.setNumRows(0);
         try {
             PedidoDTO pedidosDTO = pedidoControl.listarPedidos();
-            for (PedidoDTO x : pedidosDTO.getPedidosCadastrados()) {
+            iteratorP = new IteratorPedidoDTO(pedidosDTO.getPedidosCadastrados());
+
+            while (iteratorP.hasNext()) {
+                PedidoDTO obj = iteratorP.next();
                 String[] dados = new String[5];
-                dados[0] = x.getPizza().getNome();
-                dados[1] = x.getPizza().getTamanho();
-                dados[2] = x.getPizza().getValor() + "";
-                dados[3] = x.getId() + "";
-                dados[4] = x.getStatus();
+                dados[0] = obj.getPizza().getNome();
+                dados[1] = obj.getPizza().getTamanho();
+                dados[2] = obj.getPizza().getValor() + "";
+                dados[3] = obj.getId() + "";
+                dados[4] = obj.getStatus();
                 model.addRow(dados);
             }
+
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
 
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

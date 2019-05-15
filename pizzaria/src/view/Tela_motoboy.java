@@ -10,6 +10,7 @@ import control.PedidoControl;
 import dto.PedidoDTO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.iterator.IteratorPedidoDTO;
 
 /**
  *
@@ -22,54 +23,64 @@ public class Tela_motoboy extends javax.swing.JFrame {
      */
     private PedidoControl pedidoC;
     private MotoboyControl motob;
-
+    private IteratorPedidoDTO iteratorP;
+    
     public Tela_motoboy() {
         initComponents();
         motob = new MotoboyControl();
         pedidoC = new PedidoControl();
         preencheTabela();
     }
-
+    
     private void preencheTabela() {
         try {
             DefaultTableModel model = (DefaultTableModel) tabela.getModel();
             PedidoDTO pedidosDTO = pedidoC.listarPedidos();
-            for (PedidoDTO x : pedidosDTO.getPedidosCadastrados()) {
+            iteratorP = new IteratorPedidoDTO(pedidosDTO.getPedidosCadastrados());
+            
+            while (iteratorP.hasNext()) {
                 String[] dados = new String[7];
-                if (x.getStatus().equalsIgnoreCase("preparado") || x.getStatus().equalsIgnoreCase("a caminho")) {
-                    dados[0] = x.getCliente().getNome();
-                    dados[1] = x.getCliente().getId() + "";
-                    dados[2] = x.getPizza().getNome();
-                    dados[3] = x.getPizza().getTamanho();
-                    dados[4] = x.getPizza().getValor() + "";
-                    dados[5] = x.getStatus();
-                    dados[6] = x.getId() + "";
+                PedidoDTO obj = iteratorP.next();
+                
+                if (obj.getStatus().equalsIgnoreCase("preparado") || obj.getStatus().equalsIgnoreCase("a caminho")) {
+                    dados[0] = obj.getCliente().getNome();
+                    dados[1] = obj.getCliente().getId() + "";
+                    dados[2] = obj.getPizza().getNome();
+                    dados[3] = obj.getPizza().getTamanho();
+                    dados[4] = obj.getPizza().getValor() + "";
+                    dados[5] = obj.getStatus();
+                    dados[6] = obj.getId() + "";
                     model.addRow(dados);
                 }
             }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
     }
-
+    
     private void atualizarTabela() {
-        DefaultTableModel model = (DefaultTableModel) tabela.getModel();
-        model.setNumRows(0);
         try {
+            DefaultTableModel model = (DefaultTableModel) tabela.getModel();
             PedidoDTO pedidosDTO = pedidoC.listarPedidos();
-            for (PedidoDTO x : pedidosDTO.getPedidosCadastrados()) {
+            iteratorP = new IteratorPedidoDTO(pedidosDTO.getPedidosCadastrados());
+            model.setNumRows(0);
+            while (iteratorP.hasNext()) {
                 String[] dados = new String[7];
-                if (x.getStatus().equalsIgnoreCase("preparado") || x.getStatus().equalsIgnoreCase("a caminho")) {
-                    dados[0] = x.getCliente().getNome();
-                    dados[1] = x.getCliente().getId() + "";
-                    dados[2] = x.getPizza().getNome();
-                    dados[3] = x.getPizza().getTamanho();
-                    dados[4] = x.getPizza().getValor() + "";
-                    dados[5] = x.getStatus();
-                    dados[6] = x.getId() + "";
+                PedidoDTO obj = iteratorP.next();
+                
+                if (obj.getStatus().equalsIgnoreCase("preparado") || obj.getStatus().equalsIgnoreCase("a caminho")) {
+                    dados[0] = obj.getCliente().getNome();
+                    dados[1] = obj.getCliente().getId() + "";
+                    dados[2] = obj.getPizza().getNome();
+                    dados[3] = obj.getPizza().getTamanho();
+                    dados[4] = obj.getPizza().getValor() + "";
+                    dados[5] = obj.getStatus();
+                    dados[6] = obj.getId() + "";
                     model.addRow(dados);
                 }
             }
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }
@@ -173,7 +184,7 @@ public class Tela_motoboy extends javax.swing.JFrame {
                         atualizarTabela();
                     }
                 }
-
+                
             }
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
@@ -193,7 +204,7 @@ public class Tela_motoboy extends javax.swing.JFrame {
 
                 int id_cli = Integer.parseInt((String) tabela.getValueAt(linha, 1));
                 int quantPedidosCli = pedidoC.quant_pedidosCli(id_cli);
-
+                
                 if (quantPedidosCli > 0) {
                     String nomeCli = (String) tabela.getValueAt(linha, 0);
                     JOptionPane.showMessageDialog(null, "O cliente " + nomeCli + " contêm mais pedidos a serem preparados. Aguarde!");
@@ -205,9 +216,9 @@ public class Tela_motoboy extends javax.swing.JFrame {
                         }
                     }
                 }
-
+                
             }
-
+            
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.getMessage());
         }

@@ -10,6 +10,7 @@ import dto.ClienteDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.iterator.IteratorC;
 import view.iterator.IteratorClienteDTO;
 
 /**
@@ -22,7 +23,7 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
      * Creates new form Cliente_cadastrados
      */
     private ClienteControl clienteControl;
-    private IteratorClienteDTO iteratorCli;
+    private IteratorC iteratorCli;
 
     public Cliente_cadastrados() {
         initComponents();

@@ -10,6 +10,8 @@ import control.PedidoControl;
 import dto.PedidoDTO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.iterator.IteratorP;
+import view.iterator.IteratorPe;
 import view.iterator.IteratorPedidoDTO;
 
 /**
@@ -23,7 +25,7 @@ public class Tela_motoboy extends javax.swing.JFrame {
      */
     private PedidoControl pedidoC;
     private MotoboyControl motob;
-    private IteratorPedidoDTO iteratorP;
+    private IteratorPe iteratorP;
     
     public Tela_motoboy() {
         initComponents();

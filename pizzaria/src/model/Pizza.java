@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package model;
 
 import dao.PizzaDAO;
-import dao.Template.TemplatePizza;
 import dao.interfaces.InterfacePizza;
 import dto.PizzaDTO;
 
@@ -14,7 +8,7 @@ import dto.PizzaDTO;
  *
  * @author Italo
  */
-public class Pizza{
+public class Pizza {
 
     private String tamanho;
     private double valor;
@@ -25,11 +19,9 @@ public class Pizza{
     private int quant_fatias;
 
     private InterfacePizza interfacePi;
-    private TemplatePizza tmpPizza;
-    
+
     public Pizza() {
         interfacePi = new PizzaDAO();
-        tmpPizza = new TemplatePizza();
     }
 
     public int getQuant_fatias() {
@@ -89,11 +81,16 @@ public class Pizza{
     }
 
     public boolean salvar(Object obj) throws Exception {
-        return tmpPizza.persistir_pizza((PizzaDTO) obj);
+        PizzaDTO pizza = (PizzaDTO) obj;
+        int id_gerado = interfacePi.salva(pizza);
+        return interfacePi.salva_ingredientes(id_gerado, pizza.getSabores());
     }
 
     public int salvarPersonalizada(Object obj) throws Exception {
-        return tmpPizza.persistir_pizza_personalizada((PizzaDTO) obj);
+        PizzaDTO pizza = (PizzaDTO) obj;
+        int id_gerado = interfacePi.salva(pizza);
+        interfacePi.salva_ingredientes(id_gerado, pizza.getSabores());
+        return id_gerado;
     }
 
     public Object listar() throws Exception {

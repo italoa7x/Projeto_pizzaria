@@ -10,6 +10,7 @@ import dto.FuncionarioDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import view.iterator.IteratorF;
 import view.iterator.IteratorFuncionarioDTO;
 
 /**
@@ -22,7 +23,7 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
      * Creates new form Funcionarios_cadastrados
      */
     private FuncionarioControl funcionarioControl;
-    private IteratorFuncionarioDTO iteratorF;
+    private IteratorF iteratorF;
     
     public Funcionarios_cadastrados() {
         initComponents();

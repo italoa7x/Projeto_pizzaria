@@ -354,7 +354,7 @@ public class Inicial extends javax.swing.JFrame {
         menu_registro.add(funcionarios_cadastrados);
 
         pizzas_cadastradas.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
-        pizzas_cadastradas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/iconfinder_9_2698684.png"))); // NOI18N
+        pizzas_cadastradas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/view/icones/iconfinder_Food_C219_2427861.png"))); // NOI18N
         pizzas_cadastradas.setText("Pizzas");
         pizzas_cadastradas.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

@@ -117,7 +117,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         con = ConexaoDB.instancia().conectar();
         FuncionarioDTO fAchado = new FuncionarioDTO();
         try {
-            pst = con.prepareStatement("select *from funcionario where login = ? and senha = ? limit 1");
+            pst = con.prepareStatement("select *from funcionario where login = ? and senha = ?");
             pst.setString(1, login);
             pst.setString(2, senha);
             rs = pst.executeQuery();

@@ -6,12 +6,13 @@
 package dto;
 
 import java.util.ArrayList;
+import view.factoryMethod.Pessoa;
 
 /**
  *
  * @author italo
  */
-public class FuncionarioDTO {
+public class FuncionarioDTO extends Pessoa{
 
     private String nome;
     private String login;

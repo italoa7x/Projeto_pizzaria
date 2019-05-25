@@ -3,12 +3,13 @@ package control;
 import dao.Adapter.AdapterCliente;
 import dao.Adapter.ServicePessoa;
 import dto.ClienteDTO;
+import view.factoryMethod.Pessoa;
 
 /**
  *
  * @author Italo
  */
-public class ClienteControl {
+public class ClienteControl extends Pessoa{
     private ServicePessoa adpCliente;
     
     public ClienteControl(){
@@ -33,4 +34,5 @@ public class ClienteControl {
     public ClienteDTO listarClientes() throws Exception{
         return (ClienteDTO) adpCliente.exibir();
     }
+
 }

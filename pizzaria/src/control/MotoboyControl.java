@@ -7,12 +7,13 @@ package control;
 
 import model.Motoboy;
 import model.strategy.StrategyPedido;
+import view.factoryMethod.Pessoa;
 
 /**
  *
  * @author Italo
  */
-public class MotoboyControl {
+public class MotoboyControl extends Pessoa{
     private StrategyPedido motoboy;
     
     public MotoboyControl(){

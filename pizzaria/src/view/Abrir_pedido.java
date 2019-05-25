@@ -10,7 +10,8 @@ import control.PedidoControl;
 import dto.ClienteDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-import model.Cliente;
+import view.factoryMethod.ClienteFactory;
+import view.factoryMethod.FabricaMaster;
 
 /**
  *
@@ -23,10 +24,13 @@ public class Abrir_pedido extends javax.swing.JInternalFrame {
      */
     private ClienteControl controleC;
     private PedidoControl pedidoC;
-
+    private FabricaMaster fabricaPessoa;
+    
     public Abrir_pedido() {
         initComponents();
-        controleC = new ClienteControl();
+        fabricaPessoa = new ClienteFactory();
+        
+        controleC = (ClienteControl) fabricaPessoa.gerar("control");
         pedidoC = new PedidoControl();
         
     }

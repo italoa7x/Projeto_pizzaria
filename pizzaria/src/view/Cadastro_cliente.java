@@ -9,6 +9,8 @@ import control.ClienteControl;
 import dto.ClienteDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
+import view.factoryMethod.ClienteFactory;
+import view.factoryMethod.FabricaMaster;
 
 /**
  *
@@ -19,6 +21,7 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form Cadastro_cliente
      */
+    
     public Cadastro_cliente() {
         initComponents();
     }
@@ -201,8 +204,10 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
         String endereco = campo_endereco.getText();
         String telefone = campo_telefone.getText();
         
-        ClienteControl clienteC = new ClienteControl();
-        ClienteDTO cliDto = new ClienteDTO();
+        FabricaMaster fabricaCliente = new ClienteFactory();
+        ClienteControl clienteC = (ClienteControl) fabricaCliente.gerar("control");
+        
+        ClienteDTO cliDto = (ClienteDTO) fabricaCliente.gerar("dto");
         
         cliDto.setNome(nome);
         cliDto.setCpf(cpf);

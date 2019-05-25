@@ -6,12 +6,13 @@
 package dto;
 
 import java.util.ArrayList;
+import view.factoryMethod.Pessoa;
 
 /**
  *
  * @author italo
  */
-public class ClienteDTO {
+public class ClienteDTO extends Pessoa{
 
     private String nome;
     private String telefone;
@@ -68,5 +69,4 @@ public class ClienteDTO {
     public void setClientesCadastrados(ArrayList<ClienteDTO> clientesCadastrados) {
         this.clientesCadastrados = clientesCadastrados;
     }
-
 }

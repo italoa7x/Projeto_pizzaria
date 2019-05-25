@@ -8,6 +8,8 @@ package view;
 import control.FuncionarioControl;
 import dto.FuncionarioDTO;
 import javax.swing.JOptionPane;
+import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FuncionarioFactory;
 
 /**
  *
@@ -19,10 +21,14 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     private FuncionarioControl funcionarioControl;
-
+    private FabricaMaster fabricaFuncionario;
+    
     public Login() {
         initComponents();
-        funcionarioControl = new FuncionarioControl();
+        fabricaFuncionario = new FuncionarioFactory();
+        
+        funcionarioControl = (FuncionarioControl) fabricaFuncionario.gerar("funcionario");
+        
     }
 
     /**
@@ -116,7 +122,7 @@ public class Login extends javax.swing.JFrame {
                     dispose();
                 }
             } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Funcionário não cadastrado.");
+                JOptionPane.showMessageDialog(null, "Funcionário não cadastrado.\n"+e.getMessage());
             }
 
         }

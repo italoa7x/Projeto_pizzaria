@@ -11,6 +11,8 @@ import dto.PedidoDTO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.Pedido;
+import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FuncionarioFactory;
 import view.iterator.IteratorPe;
 import view.iterator.IteratorPedidoDTO;
 
@@ -26,11 +28,15 @@ public class Tela_pizzaiolo extends javax.swing.JFrame {
     private PedidoControl pedidoControl;
     private PizzaioloControl pizzaioloControl;
     private IteratorPe iteratorP;
+    private FabricaMaster fabricaFuncionario;
+    
 
     public Tela_pizzaiolo(String cargo) {
         initComponents();
+        fabricaFuncionario = new FuncionarioFactory();
         pedidoControl = new PedidoControl();
-        pizzaioloControl = new PizzaioloControl();
+        
+        pizzaioloControl = (PizzaioloControl) fabricaFuncionario.gerar("pizzaiolo");
         preencherTabela();
 
         if (cargo.equalsIgnoreCase("atendente")) {

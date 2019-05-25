@@ -1,7 +1,8 @@
 package control;
 import model.Pizzaiolo;
+import view.factoryMethod.Pessoa;
 
-public class PizzaioloControl {
+public class PizzaioloControl extends Pessoa{
     private Pizzaiolo pizzaiolo;
     
     public PizzaioloControl(){

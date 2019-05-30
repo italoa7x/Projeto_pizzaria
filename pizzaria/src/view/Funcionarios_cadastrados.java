@@ -11,7 +11,9 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FactoryPessoa;
 import view.factoryMethod.FuncionarioFactory;
+import view.factoryMethod.Pessoa;
 import view.iterator.IteratorF;
 import view.iterator.IteratorFuncionarioDTO;
 
@@ -26,11 +28,15 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
      */
     private FuncionarioControl funcionarioControl;
     private IteratorF iteratorF;
-    private FabricaMaster fabricaFuncionario;
+    private FabricaMaster fabricaPessoa;
+    private Pessoa fabricaFuncionario;
     
     public Funcionarios_cadastrados() {
         initComponents();
-        fabricaFuncionario = new FuncionarioFactory();
+        fabricaPessoa = new FactoryPessoa();
+        
+        fabricaFuncionario = (FuncionarioFactory) fabricaPessoa.gerar("funcionario");
+        
         funcionarioControl = (FuncionarioControl) fabricaFuncionario.gerar("funcionario");
         
         preencherTabela();

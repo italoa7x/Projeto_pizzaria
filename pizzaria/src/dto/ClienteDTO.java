@@ -12,7 +12,7 @@ import view.factoryMethod.Pessoa;
  *
  * @author italo
  */
-public class ClienteDTO extends Pessoa{
+public class ClienteDTO{
 
     private String nome;
     private String telefone;

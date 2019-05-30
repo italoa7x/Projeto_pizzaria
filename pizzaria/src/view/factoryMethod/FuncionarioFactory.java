@@ -5,23 +5,20 @@ import control.MotoboyControl;
 import control.PizzaioloControl;
 import dto.FuncionarioDTO;
 
-public class FuncionarioFactory extends FabricaMaster {
-
-    private Pessoa funcionario;
+public class FuncionarioFactory implements Pessoa {
 
     @Override
-    public Pessoa gerar(String tipo) {
+    public Object gerar(String tipo) {
         if (tipo.toUpperCase().equals("FUNCIONARIO")) {
-            funcionario = new FuncionarioControl();
+            return new FuncionarioControl();
         } else if (tipo.toUpperCase().equals("PIZZAIOLO")) {
-            funcionario = new PizzaioloControl();
+            return new PizzaioloControl();
         } else if (tipo.toUpperCase().equals("MOTOBOY")) {
-            funcionario = new MotoboyControl();
-        }else if(tipo.toUpperCase().equals("DTO")){
-            funcionario = new FuncionarioDTO();
+            return new MotoboyControl();
+        } else if (tipo.toUpperCase().equals("DTO")) {
+            return new FuncionarioDTO();
         }
-        
-        return funcionario;
+        return null;
     }
 
 }

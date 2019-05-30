@@ -11,8 +11,9 @@ import dto.PedidoDTO;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FactoryPessoa;
 import view.factoryMethod.FuncionarioFactory;
-import view.iterator.IteratorP;
+import view.factoryMethod.Pessoa;
 import view.iterator.IteratorPe;
 import view.iterator.IteratorPedidoDTO;
 
@@ -28,11 +29,13 @@ public class Tela_motoboy extends javax.swing.JFrame {
     private PedidoControl pedidoC;
     private MotoboyControl motob;
     private IteratorPe iteratorP;
-    private FabricaMaster fabricaFuncionario;
+    private FabricaMaster fabricaPessoa;
+    private Pessoa fabricaFuncionario;
     
     public Tela_motoboy() {
         initComponents();
-        fabricaFuncionario = new FuncionarioFactory();
+        fabricaPessoa = new FactoryPessoa();
+        fabricaFuncionario = (FuncionarioFactory) fabricaPessoa.gerar("funcionario");
         
         motob = (MotoboyControl) fabricaFuncionario.gerar("motoboy");
         pedidoC = new PedidoControl();

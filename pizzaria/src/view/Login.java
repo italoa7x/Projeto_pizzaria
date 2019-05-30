@@ -9,7 +9,9 @@ import control.FuncionarioControl;
 import dto.FuncionarioDTO;
 import javax.swing.JOptionPane;
 import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FactoryPessoa;
 import view.factoryMethod.FuncionarioFactory;
+import view.factoryMethod.Pessoa;
 
 /**
  *
@@ -21,11 +23,13 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     private FuncionarioControl funcionarioControl;
-    private FabricaMaster fabricaFuncionario;
+    private FabricaMaster fabricaPessoa;
+    private Pessoa fabricaFuncionario;
     
     public Login() {
         initComponents();
-        fabricaFuncionario = new FuncionarioFactory();
+        fabricaPessoa = new FactoryPessoa();
+        fabricaFuncionario = (FuncionarioFactory) fabricaPessoa.gerar("funcionario");
         
         funcionarioControl = (FuncionarioControl) fabricaFuncionario.gerar("funcionario");
         

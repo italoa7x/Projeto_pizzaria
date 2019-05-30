@@ -10,7 +10,9 @@ import dto.FuncionarioDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FactoryPessoa;
 import view.factoryMethod.FuncionarioFactory;
+import view.factoryMethod.Pessoa;
 
 /**
  *
@@ -22,11 +24,13 @@ public class Cadastro_funcionario extends javax.swing.JInternalFrame {
      * Creates new form Cadastro_funcionario
      */
     private FuncionarioControl funcionarioControl;
-    private FabricaMaster fabricaFuncionario;
+    private FabricaMaster fabricaPessoa;
+    private Pessoa fabricaFuncionario;
     
     public Cadastro_funcionario() {
         initComponents();
-        fabricaFuncionario = new FuncionarioFactory();
+        fabricaPessoa = new FactoryPessoa();
+        fabricaFuncionario = (FuncionarioFactory) fabricaPessoa.gerar("funcionario");
         funcionarioControl = (FuncionarioControl) fabricaFuncionario.gerar("funcionario");
     }
 

@@ -9,7 +9,7 @@ import view.factoryMethod.Pessoa;
  *
  * @author Italo
  */
-public class FuncionarioControl extends Pessoa{
+public class FuncionarioControl{
 
     private ServicePessoa adpFuncionario;
 

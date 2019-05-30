@@ -12,6 +12,8 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import view.factoryMethod.ClienteFactory;
 import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FactoryPessoa;
+import view.factoryMethod.Pessoa;
 import view.iterator.IteratorC;
 import view.iterator.IteratorClienteDTO;
 
@@ -26,14 +28,20 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
      */
     private ClienteControl clienteControl;
     private IteratorC iteratorCli;
-    private FabricaMaster fabricaCliente;
+    private FabricaMaster fabricaPessoa;
+    private Pessoa fabricaCliente;
     
     public Cliente_cadastrados() {
         initComponents();
-        fabricaCliente = new ClienteFactory();
+        fabricaPessoa = new FactoryPessoa();
+        
+        fabricaCliente = (ClienteFactory) fabricaPessoa.gerar("cliente");
+        
         clienteControl = (ClienteControl) fabricaCliente.gerar("control");
+        
         popularTabela();
     }
+
 
     public void setPosicao() {
         Dimension d = this.getDesktopPane().getSize();

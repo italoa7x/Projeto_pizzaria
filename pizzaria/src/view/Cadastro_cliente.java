@@ -11,6 +11,8 @@ import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import view.factoryMethod.ClienteFactory;
 import view.factoryMethod.FabricaMaster;
+import view.factoryMethod.FactoryPessoa;
+import view.factoryMethod.Pessoa;
 
 /**
  *
@@ -21,9 +23,15 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form Cadastro_cliente
      */
+    private FabricaMaster fabricaPessoa;
+    private Pessoa fabricaCliente;
+    private ClienteControl clienteControl;
     
     public Cadastro_cliente() {
         initComponents();
+        fabricaPessoa = new FactoryPessoa();
+        fabricaCliente  = (ClienteFactory) fabricaPessoa.gerar("cliente");
+        clienteControl = (ClienteControl) fabricaCliente.gerar("control");
     }
 
     public void setPosicao() {
@@ -203,19 +211,16 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
         String cpf = campo_cpf.getText();
         String endereco = campo_endereco.getText();
         String telefone = campo_telefone.getText();
-        
-        FabricaMaster fabricaCliente = new ClienteFactory();
-        ClienteControl clienteC = (ClienteControl) fabricaCliente.gerar("control");
-        
-        ClienteDTO cliDto = (ClienteDTO) fabricaCliente.gerar("dto");
-        
+
+        ClienteDTO cliDto = new ClienteDTO();
+
         cliDto.setNome(nome);
         cliDto.setCpf(cpf);
         cliDto.setEndereco(endereco);
         cliDto.setTelefone(telefone);
-        
+
         try {
-            if (clienteC.salvaCliente(cliDto)) {
+            if (clienteControl.salvaCliente(cliDto)) {
                 JOptionPane.showMessageDialog(null, "Cliente cadastrado.");
                 dispose();
             }

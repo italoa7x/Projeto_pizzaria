@@ -2,6 +2,6 @@ package view.factoryMethod;
 
 public abstract class FabricaMaster {
     
-    public abstract Pessoa gerar(String tipo);
+    public abstract Object gerar(String tipo);
       
 }

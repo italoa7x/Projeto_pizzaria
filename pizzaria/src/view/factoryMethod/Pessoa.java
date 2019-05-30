@@ -1,6 +1,6 @@
 package view.factoryMethod;
 
-public abstract class Pessoa {
+public interface Pessoa {
     
- 
+    public Object gerar(String tipo);
 }

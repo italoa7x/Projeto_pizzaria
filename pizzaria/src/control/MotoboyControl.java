@@ -13,7 +13,7 @@ import view.factoryMethod.Pessoa;
  *
  * @author Italo
  */
-public class MotoboyControl extends Pessoa{
+public class MotoboyControl{
     private StrategyPedido motoboy;
     
     public MotoboyControl(){

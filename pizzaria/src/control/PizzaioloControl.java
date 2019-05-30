@@ -2,7 +2,7 @@ package control;
 import model.Pizzaiolo;
 import view.factoryMethod.Pessoa;
 
-public class PizzaioloControl extends Pessoa{
+public class PizzaioloControl{
     private Pizzaiolo pizzaiolo;
     
     public PizzaioloControl(){

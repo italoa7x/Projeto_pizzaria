@@ -1,19 +1,18 @@
 package view.factoryMethod;
+
 import control.ClienteControl;
 import dto.ClienteDTO;
 
-public class ClienteFactory extends FabricaMaster{
-
-    private Pessoa cliente;
+public class ClienteFactory implements Pessoa {
 
     @Override
-    public Pessoa gerar(String tipo) {
-        if(tipo.toUpperCase().equals("DTO")){
-            cliente = new ClienteDTO();
-        } else if(tipo.toUpperCase().equals("CONTROL")){
-            cliente = new ClienteControl();
+    public Object gerar(String tipo) {
+       if (tipo.toUpperCase().equals("CONTROL")) {
+            return new ClienteControl();
+        } else if (tipo.toUpperCase().equals("DTO")){
+            return new ClienteDTO();
         }
-        return cliente;
+        return null;
     }
 
 }

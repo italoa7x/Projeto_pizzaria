@@ -10,10 +10,6 @@ import dto.ClienteDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import view.factoryMethod.ClienteFactory;
-import view.factoryMethod.FabricaMaster;
-import view.factoryMethod.FactoryPessoa;
-import view.factoryMethod.Pessoa;
 import view.iterator.IteratorC;
 import view.iterator.IteratorClienteDTO;
 
@@ -28,16 +24,10 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
      */
     private ClienteControl clienteControl;
     private IteratorC iteratorCli;
-    private FabricaMaster fabricaPessoa;
-    private Pessoa fabricaCliente;
     
     public Cliente_cadastrados() {
         initComponents();
-        fabricaPessoa = new FactoryPessoa();
-        
-        fabricaCliente = (ClienteFactory) fabricaPessoa.gerar("cliente");
-        
-        clienteControl = (ClienteControl) fabricaCliente.gerar("control");
+        clienteControl = new ClienteControl();
         
         popularTabela();
     }
@@ -310,7 +300,7 @@ public class Cliente_cadastrados extends javax.swing.JInternalFrame {
             String endereco = campo_endereco.getText();
             int id = Integer.parseInt((String) campo_id.getText());
 
-            ClienteDTO cliDTO = (ClienteDTO) fabricaCliente.gerar("dto");
+            ClienteDTO cliDTO = new ClienteDTO();
             cliDTO.setNome(nome);
             cliDTO.setCpf(cpf);
             cliDTO.setEndereco(endereco);

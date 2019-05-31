@@ -6,7 +6,6 @@
 package dto;
 
 import java.util.ArrayList;
-import view.factoryMethod.Pessoa;
 
 /**
  *

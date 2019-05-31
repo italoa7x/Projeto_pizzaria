@@ -7,12 +7,11 @@ package view;
 
 import control.ClienteControl;
 import dto.ClienteDTO;
+import view.factory.FactoryCliDTO;
+import view.factory.Pessoa;
+
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-import view.factoryMethod.ClienteFactory;
-import view.factoryMethod.FabricaMaster;
-import view.factoryMethod.FactoryPessoa;
-import view.factoryMethod.Pessoa;
 
 /**
  *
@@ -23,15 +22,11 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
     /**
      * Creates new form Cadastro_cliente
      */
-    private FabricaMaster fabricaPessoa;
-    private Pessoa fabricaCliente;
     private ClienteControl clienteControl;
     
     public Cadastro_cliente() {
         initComponents();
-        fabricaPessoa = new FactoryPessoa();
-        fabricaCliente  = (ClienteFactory) fabricaPessoa.gerar("cliente");
-        clienteControl = (ClienteControl) fabricaCliente.gerar("control");
+        clienteControl = new ClienteControl();
     }
 
     public void setPosicao() {
@@ -207,12 +202,14 @@ public class Cadastro_cliente extends javax.swing.JInternalFrame {
 
     private void btSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarActionPerformed
         // TODO add your handling code here:
+        Pessoa criaDto = new FactoryCliDTO();
+
         String nome = campoNome.getText();
         String cpf = campo_cpf.getText();
         String endereco = campo_endereco.getText();
         String telefone = campo_telefone.getText();
 
-        ClienteDTO cliDto = new ClienteDTO();
+        ClienteDTO cliDto = (ClienteDTO) criaDto.criar();
 
         cliDto.setNome(nome);
         cliDto.setCpf(cpf);

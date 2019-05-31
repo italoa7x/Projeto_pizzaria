@@ -10,10 +10,6 @@ import control.PedidoControl;
 import dto.ClienteDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
-import view.factoryMethod.ClienteFactory;
-import view.factoryMethod.FabricaMaster;
-import view.factoryMethod.FactoryPessoa;
-import view.factoryMethod.Pessoa;
 
 /**
  *
@@ -24,18 +20,13 @@ public class Abrir_pedido extends javax.swing.JInternalFrame {
     /**
      * Creates new form Abrir_pedido
      */
-    private ClienteControl controleC;
     private PedidoControl pedidoC;
-    private FabricaMaster fabricaPessoa;
-    private Pessoa fabricaCliente;
+    private ClienteControl controleCliente;
     
     public Abrir_pedido() {
         initComponents();
-        fabricaPessoa = new FactoryPessoa();
-        fabricaCliente = (ClienteFactory) fabricaPessoa.gerar("cliente");
         pedidoC = new PedidoControl();
-        controleC = (ClienteControl) fabricaCliente.gerar("control");
-        
+        controleCliente = new ClienteControl();
     }
 
     public void setPosicao() {
@@ -340,7 +331,7 @@ public class Abrir_pedido extends javax.swing.JInternalFrame {
         // TODO add your handling code here:
         try {
             String nome = capo_pesquisa.getText();
-            ClienteDTO achado = controleC.buscar(nome);
+            ClienteDTO achado = controleCliente.buscar(nome);
             if (achado != null) {
                 campo_nome.setText(achado.getNome());
                 campo_telefone.setText(achado.getTelefone());

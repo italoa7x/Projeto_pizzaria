@@ -7,7 +7,6 @@ package control;
 
 import model.Motoboy;
 import model.strategy.StrategyPedido;
-import view.factoryMethod.Pessoa;
 
 /**
  *

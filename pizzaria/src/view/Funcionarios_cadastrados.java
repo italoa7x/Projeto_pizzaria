@@ -10,10 +10,6 @@ import dto.FuncionarioDTO;
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import view.factoryMethod.FabricaMaster;
-import view.factoryMethod.FactoryPessoa;
-import view.factoryMethod.FuncionarioFactory;
-import view.factoryMethod.Pessoa;
 import view.iterator.IteratorF;
 import view.iterator.IteratorFuncionarioDTO;
 
@@ -28,16 +24,11 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
      */
     private FuncionarioControl funcionarioControl;
     private IteratorF iteratorF;
-    private FabricaMaster fabricaPessoa;
-    private Pessoa fabricaFuncionario;
     
     public Funcionarios_cadastrados() {
         initComponents();
-        fabricaPessoa = new FactoryPessoa();
         
-        fabricaFuncionario = (FuncionarioFactory) fabricaPessoa.gerar("funcionario");
-        
-        funcionarioControl = (FuncionarioControl) fabricaFuncionario.gerar("funcionario");
+        funcionarioControl = new FuncionarioControl();
         
         preencherTabela();
     }
@@ -274,7 +265,7 @@ public class Funcionarios_cadastrados extends javax.swing.JInternalFrame {
             String senha = campo_senha.getText();
             int id = Integer.parseInt((String) campo_id.getText());
             
-            FuncionarioDTO funDTO = (FuncionarioDTO) fabricaFuncionario.gerar("dto");
+            FuncionarioDTO funDTO = new FuncionarioDTO();
             funDTO.setNome(nome);
             funDTO.setLogin(login);
             funDTO.setSenha(senha);

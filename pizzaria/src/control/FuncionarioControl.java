@@ -3,7 +3,6 @@ package control;
 import dao.Adapter.AdapterFuncionario;
 import dao.Adapter.ServicePessoa;
 import dto.FuncionarioDTO;
-import view.factoryMethod.Pessoa;
 
 /**
  *

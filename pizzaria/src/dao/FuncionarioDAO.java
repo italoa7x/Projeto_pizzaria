@@ -8,6 +8,7 @@ package dao;
 import dao.interfaces.InterfaceFuncionario;
 import ConnectionFactory.ConexaoDB;
 import dto.FuncionarioDTO;
+import factory.Fabrica;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,8 +37,6 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 
@@ -53,8 +52,6 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 
@@ -64,7 +61,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         PreparedStatement pst = null;
         ResultSet rs = null;
         ArrayList<FuncionarioDTO> vetorFuncionarios = new ArrayList<FuncionarioDTO>();
-        FuncionarioDTO funcionariodto = new FuncionarioDTO();
+        FuncionarioDTO funcionariodto = (FuncionarioDTO) Fabrica.gerar("funcionario");
 
         try {
             con = ConexaoDB.instancia().conectar();
@@ -83,9 +80,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         } catch (Exception e) {
             throw new Exception(e.getMessage());
 
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
+        } 
         return funcionariodto;
     }
 
@@ -104,8 +99,6 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 
@@ -115,7 +108,7 @@ public class FuncionarioDAO implements InterfaceFuncionario {
         PreparedStatement pst = null;
         ResultSet rs = null;
         con = ConexaoDB.instancia().conectar();
-        FuncionarioDTO fAchado = new FuncionarioDTO();
+        FuncionarioDTO fAchado = (FuncionarioDTO) Fabrica.gerar("funcionario");
         try {
             pst = con.prepareStatement("select *from funcionario where login = ? and senha = ?");
             pst.setString(1, login);
@@ -128,8 +121,6 @@ public class FuncionarioDAO implements InterfaceFuncionario {
             return fAchado;
         } catch (Exception e) {
             throw new Exception("Funcionário não encontrado." + e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
         }
     }
 

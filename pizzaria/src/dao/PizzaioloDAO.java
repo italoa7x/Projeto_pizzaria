@@ -29,8 +29,6 @@ public class PizzaioloDAO implements InterfacePizzaiolo {
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 

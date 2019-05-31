@@ -75,7 +75,7 @@ public class Cliente{
     }
 
     public Object buscar(Object id) throws Exception {
-      return serviceC.buscar_por_nome(nome);
+      return serviceC.buscar_por_nome((String) id);
     }
 
 }

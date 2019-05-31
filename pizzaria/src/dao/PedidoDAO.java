@@ -37,9 +37,7 @@ public class PedidoDAO implements InterfacePedido {
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
-        }
+        } 
     }
 
     @Override
@@ -75,8 +73,6 @@ public class PedidoDAO implements InterfacePedido {
             regPedidos.setPedidosCadastrados(vetor);
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
         return regPedidos;
     }
@@ -97,9 +93,7 @@ public class PedidoDAO implements InterfacePedido {
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
+        } 
         return 0;
     }
 

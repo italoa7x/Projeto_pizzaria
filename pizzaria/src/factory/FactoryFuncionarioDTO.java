@@ -1,10 +1,10 @@
-package view.factory;
+package factory;
 
 import dto.FuncionarioDTO;
 
 public class FactoryFuncionarioDTO implements Pessoa {
     @Override
-    public Object criar() {
+    public FuncionarioDTO criar() {
         return new FuncionarioDTO();
     }
 }

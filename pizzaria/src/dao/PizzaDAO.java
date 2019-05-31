@@ -45,8 +45,6 @@ public class PizzaDAO implements InterfacePizza {
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, "Erro ao salvar pizza " + e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
         }
         return id_gerado;
     }
@@ -63,8 +61,6 @@ public class PizzaDAO implements InterfacePizza {
             return true;
         } catch (Exception e) {
             throw new Exception("Não é possível excluir esta pizza.");
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 
@@ -93,9 +89,7 @@ public class PizzaDAO implements InterfacePizza {
             return regPizzas;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
+        } 
     }
 
     @Override
@@ -114,9 +108,7 @@ public class PizzaDAO implements InterfacePizza {
             }
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
+        } 
         return vetor;
     }
 
@@ -136,8 +128,6 @@ public class PizzaDAO implements InterfacePizza {
             return true;
         } catch (SQLException ex) {
             throw new Exception("Erro ao salvar pizza " + ex.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 }

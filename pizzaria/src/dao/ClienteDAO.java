@@ -3,6 +3,9 @@ package dao;
 import dao.interfaces.InterfaceCliente;
 import ConnectionFactory.ConexaoDB;
 import dto.ClienteDTO;
+import factory.Fabrica;
+import factory.FactoryCliDTO;
+import factory.Pessoa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -34,8 +37,6 @@ public class ClienteDAO implements InterfaceCliente {
 
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
         return false;
     }
@@ -53,8 +54,6 @@ public class ClienteDAO implements InterfaceCliente {
                 return true;
             } catch (Exception e) {
                 throw new Exception("Não é possível excluir este cliente.");
-            } finally {
-                ConexaoDB.instancia().desconectar(con, pst);
             }
         }
         return false;
@@ -66,13 +65,13 @@ public class ClienteDAO implements InterfaceCliente {
         PreparedStatement pst = null;
         ResultSet rs = null;
         ArrayList<ClienteDTO> vetorCli = new ArrayList<ClienteDTO>();
-        ClienteDTO cliDTO = new ClienteDTO();
+        ClienteDTO cliDTO = (ClienteDTO) Fabrica.gerar("cliente");
         try {
             con = ConexaoDB.instancia().conectar();
             pst = con.prepareStatement("select *from cliente");
             rs = pst.executeQuery();
             while (rs.next()) {
-                ClienteDTO c = new ClienteDTO();
+                ClienteDTO c = (ClienteDTO) Fabrica.gerar("cliente");
                 c.setNome(rs.getString("nome"));
                 c.setCpf(rs.getString("cpf"));
                 c.setEndereco(rs.getString("endereco"));
@@ -84,9 +83,7 @@ public class ClienteDAO implements InterfaceCliente {
 
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
+        } 
         return cliDTO;
     }
 
@@ -108,8 +105,6 @@ public class ClienteDAO implements InterfaceCliente {
             return true;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-            ConexaoDB.instancia().desconectar(con, pst);
         }
     }
 
@@ -118,7 +113,7 @@ public class ClienteDAO implements InterfaceCliente {
         Connection con = null;
         PreparedStatement pst = null;
         ResultSet rs = null;
-        ClienteDTO clienteDTO = new ClienteDTO();
+        ClienteDTO clienteDTO = (ClienteDTO) Fabrica.gerar("cliente");
         try {
             con = ConexaoDB.instancia().conectar();
             pst = con.prepareStatement("select *from cliente where nome like ?");
@@ -135,9 +130,7 @@ public class ClienteDAO implements InterfaceCliente {
             return clienteDTO;
         } catch (Exception e) {
             throw new Exception(e.getMessage());
-        } finally {
-           ConexaoDB.instancia().desconectar(con, pst, rs);
-        }
+        } 
     }
 
 }

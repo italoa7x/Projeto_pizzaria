@@ -7,8 +7,9 @@ package view;
 
 import control.FuncionarioControl;
 import dto.FuncionarioDTO;
-import view.factory.FactoryFuncionarioDTO;
-import view.factory.Pessoa;
+import factory.Fabrica;
+import factory.FactoryFuncionarioDTO;
+import factory.Pessoa;
 
 import java.awt.Dimension;
 import javax.swing.JOptionPane;
@@ -23,12 +24,10 @@ public class Cadastro_funcionario extends javax.swing.JInternalFrame {
      * Creates new form Cadastro_funcionario
      */
     private FuncionarioControl funcionarioControl;
-    private Pessoa fabricaDto;
 
     public Cadastro_funcionario() {
         initComponents();
         funcionarioControl = new FuncionarioControl();
-        fabricaDto = new FactoryFuncionarioDTO();
     }
 
     public void setPosicao() {
@@ -217,7 +216,7 @@ public class Cadastro_funcionario extends javax.swing.JInternalFrame {
             int nivel_acesso = Integer.parseInt((String) txtNivelAcesso.getText());
             String cargo = combo_cargos.getSelectedItem().toString();
             
-            FuncionarioDTO fDto = (FuncionarioDTO) fabricaDto.criar();
+            FuncionarioDTO fDto = (FuncionarioDTO) Fabrica.gerar("funcionario");
             
             fDto.setNome(nome);
             fDto.setLogin(login);
